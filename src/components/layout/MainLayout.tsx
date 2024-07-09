@@ -1,24 +1,37 @@
-import { Layout, Menu} from 'antd'; 
-import {
-    UploadOutlined,
-    UserOutlined,
-    VideoCameraOutlined,
-  } from '@ant-design/icons';
-import { createElement } from 'react';
+import { Layout, Menu } from "antd";
+
+import { Outlet } from "react-router-dom";
+import { adminSidebarItems } from "../../routes/admin.routes";
 
 const { Header, Content, Footer, Sider } = Layout;
 
-const items = [UserOutlined, VideoCameraOutlined, UploadOutlined, UserOutlined].map(
-    (icon, index) => ({
-      key: String(index + 1),
-      icon: createElement(icon),
-      label: `nav ${index + 1}`,
-    }),
-  );
-
+// const items: MenuProps['items'] = [
+//   {
+//     key: 'Dashboard',
+//     label: <NavLink to='/admin/dashboard'>Dashboard</NavLink>
+//   },
+//   {
+//     key: 'User Management',
+//     label: 'User Management',
+//     children: [
+//       {
+//         key: 'Create Admin',
+//         label: <NavLink to='/admin/create-admin'>Create Admin</NavLink>
+//       },
+//       {
+//         key: 'Create Faculty',
+//         label: <NavLink to='/admin/create-faculty'>Create Faculty</NavLink>
+//       },
+//       {
+//         key: 'Create Student',
+//         label: <NavLink to='/admin/create-student'>Create Student</NavLink>
+//       },
+//     ]
+//   },
+// ]
 const MainLayout = () => {
   return (
-    <Layout style={{height: '100vh'}}>
+    <Layout style={{ height: "100vh" }}>
       <Sider
         breakpoint="lg"
         collapsedWidth="0"
@@ -31,21 +44,21 @@ const MainLayout = () => {
       >
         <div className="demo-logo-vertical" />
         <div
-        style={{
-            color:'white',
-            height: '4rem',
-            display:'flex',
-            justifyContent: 'center',
-            alignItems:'center'
-        }}
+          style={{
+            color: "white",
+            height: "4rem",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-            <h1>PH-Uni</h1>
+          <h1>PH-Uni</h1>
         </div>
         <Menu
-        theme='dark'
+          theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={items}
+          items={adminSidebarItems}
         />
       </Sider>
       <Layout>
@@ -55,10 +68,9 @@ const MainLayout = () => {
             style={{
               padding: 24,
               minHeight: 360,
-         
             }}
           >
-            The content should be here
+            <Outlet />
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
